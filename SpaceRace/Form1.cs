@@ -27,6 +27,7 @@ namespace SpaceRace
         List<Rectangle> asteroidList = new List<Rectangle>();
         List<Rectangle> starList = new List<Rectangle>();
         List<int> asteroidSpeedList = new List<int>();
+        List<Color> starColorList = new List<Color>();
 
         bool wDown = false;
         bool sDown = false;
@@ -60,7 +61,6 @@ namespace SpaceRace
         SolidBrush blueBrush = new SolidBrush(Color.Blue);
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush orangeBrush = new SolidBrush(Color.Orange);
-        SolidBrush starBrush = new SolidBrush(Color.LightBlue);
 
         Font drawFont = new Font("Cascadia Code", 20, FontStyle.Bold);
 
@@ -145,6 +145,7 @@ namespace SpaceRace
                 //draw stars
                 for (int i = 1; i < starList.Count; i++)
                 {
+                    SolidBrush starBrush = new SolidBrush(starColorList[i]);
                     e.Graphics.FillEllipse(starBrush, starList[i]);
                 }
 
@@ -395,6 +396,7 @@ namespace SpaceRace
         {
             //draw stars in the background
             starList.Clear();
+            starColorList.Clear();
             MakeStars();
             
             player1 = new Rectangle(this.Width/4, this.Height - playerHeight, playerWidth, playerHeight);
@@ -463,6 +465,35 @@ namespace SpaceRace
 
                 Rectangle star = new Rectangle(x, y, size, size);
                 starList.Add(star);
+
+                int color = random.Next(1, 9);
+                switch (color)
+                {
+                    case 1:
+                        starColorList.Add(Color.White);
+                        break;
+                    case 2:
+                        starColorList.Add(Color.LightBlue);
+                        break;
+                    case 3:
+                        starColorList.Add(Color.LightGreen);
+                        break;
+                    case 4:
+                        starColorList.Add(Color.LightPink);
+                        break;
+                    case 5:
+                        starColorList.Add(Color.LightYellow);
+                        break;
+                    case 6:
+                        starColorList.Add(Color.Orange);
+                        break;
+                    case 7:
+                        starColorList.Add(Color.LightCyan);
+                        break;
+                    case 8:
+                        starColorList.Add(Color.MediumPurple);
+                        break;
+                }
             }
         }
     }
